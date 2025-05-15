@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premier Auto Deals</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #002244;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      nav {
+        background-color: #0055aa;
+        padding: 10px;
+        text-align: center;
+      }
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .content {
+        padding: 20px;
+      }
+      footer {
+        background-color: #002244;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: 30px;
+      }
+    
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .modal-content {
+        position: relative;
+        background-color: white;
+        margin: 3% auto;
+        padding: 0;
+        width: 90%;
+        height: 85%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      .modal iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .close-button {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        background-color: #fff;
+        border: none;
+        border-radius: 50%;
+        padding: 8px 12px;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .close-button:hover {
+        background-color: grey;
+        color: white;
+        transform: scale(1.1);
+      }
+    
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Premier Auto Deals</h1>
+      <p>Your Trusted Local Car Dealership</p>
+    </header>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Inventory</a>
+      <a id="scheduleServiceLink">Schedule Service</a>
+      <a href="#">Contact Us</a>
+    </nav>
+
+    <div class="content">
+      <h2>Explore Our Latest Offers</h2>
+      <p>
+        Check out our special tool below to customize your dream car or explore
+        services powered by AI!
+      </p>
+    </div>
+
+    <!-- Modal -->
+    <div id="scheduleModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="closeModal">&times;</span>
+        <iframe id="serviceIframe" src=""></iframe>
+      </div>
+    </div>
+
+    <footer>&copy; 2025 Premier Auto Deals. All rights reserved.</footer>
+
+    <script>
+      const modal = document.getElementById("scheduleModal");
+      const openBtn = document.getElementById("scheduleServiceLink");
+      const closeBtn = document.getElementById("closeModal");
+      const iframe = document.getElementById("serviceIframe");
+      const iframeURL =
+        "https://srishti244.mykaarma.dev/web-scheduler-app/entry?dealerUuid=cb731d36fd635ddd6ef8dd43500892b0c0249d1c01a46dbcc445a809c0a8e3b2&utm_source=12345";
+
+      openBtn.addEventListener("click", function () {
+        iframe.src = iframeURL;
+        modal.style.display = "block";
+      });
+
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+        iframe.src = ""; // Clear iframe to reset state
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+          iframe.src = "";
+        }
+      });
+    </script>
+  </body>
+</html>
